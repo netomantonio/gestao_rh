@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Deletar Deartamento <span class="btn-info">{{ departamento.nome }}</span> ?</h1>
+<form method="post">
+    {% csrf_token %}
+
+    {{ form }}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+</form>
+{% endblock %}
