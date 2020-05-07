@@ -2,8 +2,5 @@
 *.sqlite3
 venv
 __pycache__/
-wsgi.py
-manage.py
-tests.py
 bootstrap/
 gestao_rh.pem
