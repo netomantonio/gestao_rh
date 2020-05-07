@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    <h1>Deletar Hora extra <span class="btn-info">{{ object }}</span> ?</h1>
+<form method="post">
+    {% csrf_token %}
+
+    {{ form }}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+</form>
+{% endblock %}

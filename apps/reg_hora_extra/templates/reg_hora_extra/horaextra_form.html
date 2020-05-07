@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    <h1>Horas Extras</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form | bootstrap }}
+        <button type="submit" class="btn btn-info">Adicionar</button>
+    {% if object %}
+        <a class="btn btn-outline-danger" href="{% url 'delete_hora_extra' object.id %}">
+            Deletar
+        </a>
+    {% endif %}
+    </form>
+{% endblock %}

@@ -7,7 +7,7 @@ from apps.funcionarios.models import Funcionario
 
 class FuncionarioCreate(CreateView):
     model = Funcionario
-    fields = ['nome', 'departamentos']
+    fields = ['nome', 'departamentos',]
 
     def form_valid(self, form):
         funcionario = form.save(commit=False)
