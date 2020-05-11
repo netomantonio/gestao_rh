@@ -1,5 +1,7 @@
 asgiref==3.2.7
 Django==2.1.5
 django-bootstrap-form==3.4
+Pillow==7.1.2
 pytz==2019.3
+reportlab==3.5.42
 sqlparse==0.3.1
