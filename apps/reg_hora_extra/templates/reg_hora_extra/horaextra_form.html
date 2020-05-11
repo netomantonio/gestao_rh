@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
+{% load staticfiles %}
 
 {% block main %}
     <h1>Horas Extras</h1>
@@ -8,10 +9,25 @@
 
         {{ form | bootstrap }}
         <button type="submit" class="btn btn-info">Adicionar</button>
-    {% if object %}
-        <a class="btn btn-outline-danger" href="{% url 'delete_hora_extra' object.id %}">
-            Deletar
-        </a>
-    {% endif %}
+        {% if object %}
+            <a class="btn btn-outline-danger" href="{% url 'delete_hora_extra' object.id %}">
+                Deletar
+            </a>
+        {% endif %}
+        {#        <input type="text" id="campoX">#}
+        <button type="button" class="btn btn-outline-warning" onclick="utilizouHoraExtra({{ object.id }})">
+            Marcar como utilizada
+        </button>
+        <button type="button" class="btn btn-warning" onclick="naoUtilizouHoraExtra({{ object.id }})">
+            Marcar como não utilizada
+        </button>
     </form>
+    <br>
+    <p id="mensagem"></p>
+    <p id="banco_atualizado"></p>
+{% endblock %}
+
+{% block static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/func-ajax.js' %}"></script>
 {% endblock %}

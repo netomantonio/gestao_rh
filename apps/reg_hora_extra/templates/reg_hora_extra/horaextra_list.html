@@ -9,7 +9,7 @@
     {% for hora_extra in object_list %}
         </br>
         {{ hora_extra }}
-        <a href="{% url 'edit_hora_extra' hora_extra.pk %}">
+        <a href="{% url 'edit_hora_extra_by_funcionario' hora_extra.pk %}">
             Editar
         </a>
             /
