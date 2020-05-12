@@ -1,3 +1,4 @@
+import csv
 import json
 
 from django.contrib.auth.models import User
@@ -67,6 +68,7 @@ class UtilizouHoraExtra(View):
 
 
 class NaoUtilizouHoraExtra(View):
+
     def post(self, *args, **kwargs):
         this_hora_extra = HoraExtra.objects.get(id=kwargs['pk'])
         this_hora_extra.utilizada = False
@@ -76,3 +78,15 @@ class NaoUtilizouHoraExtra(View):
         response = json.dumps({'mensagem': 'Requisição executada', 'horas': funcionario.total_horas_extras})
         return HttpResponse(response, content_type='application/json')
 
+
+class CsvExport(View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="bancoDeHoras.csv"'
+        banco_horas = HoraExtra.objects.filter(utilizada=False)
+
+        writer = csv.writer(response)
+        writer.writerow(['ID', 'MOTIVO', 'FUNCIONARIO', 'QNT HORAS', 'HORAS RESTANTES'])
+        for hora_extra in banco_horas:
+            writer.writerow([hora_extra.id, hora_extra.motivo, hora_extra.funcionario, hora_extra.horas, hora_extra.funcionario.total_horas_extras])
+        return response
