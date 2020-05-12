@@ -1,6 +1,7 @@
 asgiref==3.2.7
 Django==2.1.5
 django-bootstrap-form==3.4
+djangorestframework==3.11.0
 html5lib==1.0.1
 Pillow==7.1.2
 PyPDF2==1.26.0
