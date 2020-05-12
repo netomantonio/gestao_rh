@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.reg_hora_extra.views import HoraExtraCreate, HoraExtraList, HoraExtraEdit, HoraExtraDelete, HoraExtraEditByFuncionario, UtilizouHoraExtra, NaoUtilizouHoraExtra
+from apps.reg_hora_extra.views import HoraExtraCreate, HoraExtraList, HoraExtraEdit, HoraExtraDelete, HoraExtraEditByFuncionario, UtilizouHoraExtra, NaoUtilizouHoraExtra, CsvExport
 
 urlpatterns = [
     path('novo', HoraExtraCreate.as_view(), name='create_hora_extra'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('nao-utilizou-hora-extra/<int:pk>/', NaoUtilizouHoraExtra.as_view(), name='nao_utilizou_hora_extra'),
     path('<int:pk>/deletar', HoraExtraDelete.as_view(), name='delete_hora_extra'),
     path('', HoraExtraList.as_view(), name='list_hora_extra'),
+    path('csv-export', CsvExport.as_view(), name='csv_export'),
 ]
