@@ -63,7 +63,7 @@ class UtilizouHoraExtra(View):
         this_hora_extra.utilizada = True
         this_hora_extra.save()
 
-        funcionario = self.request.user.funcionario
+        funcionario = this_hora_extra.funcionario
         response = json.dumps({'mensagem': 'Requisição executada', 'horas': funcionario.total_horas_extras})
         return HttpResponse(response, content_type='application/json')
 
@@ -75,7 +75,7 @@ class NaoUtilizouHoraExtra(View):
         this_hora_extra.utilizada = False
         this_hora_extra.save()
 
-        funcionario = self.request.user.funcionario
+        funcionario = this_hora_extra.funcionario
         response = json.dumps({'mensagem': 'Requisição executada', 'horas': funcionario.total_horas_extras})
         return HttpResponse(response, content_type='application/json')
 
