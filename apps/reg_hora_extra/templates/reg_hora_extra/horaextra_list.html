@@ -4,7 +4,9 @@
     <h1>Banco de Horas</h1>
     </br>
     <p>Registrar hora extra <a class="btn-sm btn-info" href="{% url 'create_hora_extra' %}">+</a></p>
+    <a class="btn btn-outline-success" href="{% url 'csv_export' %}">CSV Export</a>
     </br>
+    <br>
     <h4>Lista de registros de horas extras</h4>
     {% for hora_extra in object_list %}
         </br>
