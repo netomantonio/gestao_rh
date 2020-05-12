@@ -115,7 +115,7 @@ class ExcelExport(View):
         for hora_extra in banco_horas:
             ws.write(row_num, 0, hora_extra.id)
             ws.write(row_num, 1, hora_extra.motivo)
-            ws.write(row_num, 2, hora_extra.funcionario)
+            ws.write(row_num, 2, hora_extra.funcionario.nome)
             ws.write(row_num, 3, hora_extra.horas)
             ws.write(row_num, 4, hora_extra.funcionario.total_horas_extras)
             row_num += 1
