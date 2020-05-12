@@ -1,6 +1,7 @@
 import csv
 import json
 
+import xlwt
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.urls import reverse, reverse_lazy
@@ -90,3 +91,34 @@ class CsvExport(View):
         for hora_extra in banco_horas:
             writer.writerow([hora_extra.id, hora_extra.motivo, hora_extra.funcionario, hora_extra.horas, hora_extra.funcionario.total_horas_extras])
         return response
+
+class ExcelExport(View):
+    def get(self, request):
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="users.xls"'
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('Banco de Horas')
+
+        row_num = 0
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+        columns = ['ID', 'MOTIVO', 'FUNCIONARIO', 'HORAS', 'HORAS RESTANTES']
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        font_style = xlwt.XFStyle()
+
+        banco_horas = HoraExtra.objects.filter(utilizada=False)
+
+        row_num = 1
+        for hora_extra in banco_horas:
+            ws.write(row_num, 0, hora_extra.id)
+            ws.write(row_num, 1, hora_extra.motivo)
+            ws.write(row_num, 2, hora_extra.funcionario)
+            ws.write(row_num, 3, hora_extra.horas)
+            ws.write(row_num, 4, hora_extra.funcionario.total_horas_extras)
+            row_num += 1
+        wb.save(response)
+        return response
+
