@@ -64,7 +64,7 @@ class UtilizouHoraExtra(View):
         this_hora_extra.save()
 
         funcionario = self.request.user.funcionario
-        response = json.dumps({'mensagem': 'Requisição executada', 'horas': funcionario.total_horas_extra})
+        response = json.dumps({'mensagem': 'Requisição executada', 'horas': funcionario.total_horas_extras})
         return HttpResponse(response, content_type='application/json')
 
 
