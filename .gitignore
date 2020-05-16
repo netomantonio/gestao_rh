@@ -3,3 +3,4 @@
 venv
 __pycache__/
 gestao_rh.pem
+local_settings.py

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'apps.documentos',
     'apps.reg_hora_extra',
     'apps.core',
+    'apps.app_antiga',
     'bootstrapform',
     'rest_framework',
     'rest_framework.authtoken',
@@ -70,15 +71,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gestao_rh.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -135,14 +128,11 @@ LOGOUT_REDIRECT_URL = 'login'
 
 CELERY_RESULT_BACKEND = 'django-db'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'email@email.com'
-EMAIL_HOST_PASSWORD = 'senha'
+DATABASE_ROUTERS = ['gestao_rh.DBRoutes.DBRoutes']
+
+from .local_settings import *
