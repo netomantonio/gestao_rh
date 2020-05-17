@@ -1,4 +1,5 @@
 from django.conf import settings
+# from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -14,6 +15,10 @@ router.register(r'api/funcionarios', FuncionarioViewSet)
 router.register(r'api/horas-extras', HoraExtraViewSet)
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
     path('', include('apps.core.urls')),
     path('funcionarios/', include('apps.funcionarios.urls')),
     path('departamentos/', include('apps.departamentos.urls')),

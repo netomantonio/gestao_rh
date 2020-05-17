@@ -14,6 +14,12 @@ def home(request):
     data['usuario'] = request.user
     return render(request, 'core/index.html', data)
 
+def home2(request):
+    data = {}
+    data['usuario'] = request.user
+    return render(request, 'core/home.html', data)
+
+
 def celery(request):
     send_relatorio.delay()
     return HttpResponse('Tarefa adicionada a fila de execução')

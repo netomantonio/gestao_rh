@@ -1,28 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}
-Pagina Inicial
+{% trans "Home Page" %}
 {% endblock %}
 {% block main %}
-Seja bem vindo
-    <div class="row">
-        <div class="col-sm">
-          One of three columns
-        </div>
-        <div class="col-sm">
-          Olá {{ usuario.funcionario.nome }}
-            <a href="{% url 'list_funcionario' %}">Gerenciar Funcionários</a> /
-            <a href="{% url 'list_departamento' %}">Gerenciar Departamentos</a> /
-            <a href="{% url 'list_hora_extra' %}">Gerenciar Horas Extras</a> /
-        </div>
-        <br class="col-sm">
-            <a href="{% url 'logout' %}">Logout</a> /
+    {% trans "Welcome" %}
+    {% trans "Hi" %} {{ usuario.funcionario.nome }}
 
-            {% if usuario.funcionario.empresa %}
-                <a href="{% url 'edit_empresa' usuario.funcionario.empresa.pk %}">Editar Empresa</a>
-            {% else %}
-                <a href="{% url 'create_empresa' %}">Criar Empresa</a>
-            {% endif %}
-        </div>
-  </div>
+    {% if usuario.funcionario.empresa %}
+        <a href="{% url 'edit_empresa' usuario.funcionario.empresa.pk %}">Editar Empresa</a>
+    {% else %}
+        <a href="{% url 'create_empresa' %}">Criar Empresa</a>
+    {% endif %}
 {% endblock %}

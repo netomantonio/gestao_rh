@@ -1,4 +1,5 @@
 import io
+from django.utils.translation import gettext as _
 
 from django.template.loader import get_template
 import xhtml2pdf.pisa as pisa
@@ -34,6 +35,10 @@ class FuncionarioList(ListView):
         empresa_funcionario = self.request.user.funcionario.empresa
         return Funcionario.objects.filter(empresa=empresa_funcionario)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['report_button'] = _("Employee report")
+        return context
 
 class FuncionarioEdit(UpdateView):
     model = Funcionario
